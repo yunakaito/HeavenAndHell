@@ -1,8 +1,7 @@
 //hah_barcode.pde
-//※code_pattern.csvを読み込みできるようにしておいてください
 
 //最大文字数(文字の最大値を決めておき、それより少ない文字列はspaceで埋める)
-final int n = 3;
+final int n = 5;
 //バーコードの大きさ(×2,×4...,×nなど)
 final int scale = 2;
 //色定義
@@ -12,18 +11,19 @@ final int w = 320*scale, h = 150*scale;
 
 // 任意の表示テキストを入力(スラッシュで区切る)
 final String[] text = {
- "O/h/!", 
- "H/i/?", 
- "y/u", 
- "A/space/Z"
+ "t/e/s/t",
+ "T/E/S/T/!",
+ "T/H/I/S",
+ "I/S",
+ "T/E/space/S/T"
 };
 
-//【追加】イージング度合い
+//イージング度合い
 final float easing = 0.2;
 
 //表示するバーコードのカウント
 int textCount = 1;
-//【追加】バーコードがアニメーション中かどうか
+//バーコードがアニメーション中かどうか
 boolean isMoveBarcode = false;
 //パターン一覧用の変数
 Table code_pattern;
@@ -40,18 +40,17 @@ void setup() {
 
 void draw() {
  background(white);
- //【変更】drawBarcodeの仕様変更につき
  drawBarcode(text[(textCount-1) % text.length], text[(textCount) % text.length]);
 }
 
-//【追加】キーを押すとアニメーションします
+//キーを押すとアニメーションします
 void keyPressed() {
  textCount++;
  isMoveBarcode = !isMoveBarcode;
 }
 
 
-//【追加】現パターンと、変化後のパターン用の変数
+//現パターンと、変化後のパターン用の変数
 float[] patterns;
 float[] patterns_next;
 float count;
